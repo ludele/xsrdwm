@@ -112,7 +112,6 @@ time_date(){
    date "+^c#6CC335^ %A %B %e ^c#FF90000^ %k:%M" | xargs
 }
 
-x=0
 while true
 do
    xsetroot -name " \
