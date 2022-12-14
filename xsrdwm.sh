@@ -98,7 +98,7 @@ network(){
 
 
 cpufreq(){
-   awk '/MHz/ {print $4}' /proc/cpuinfo | xargs   | awk '{print ($1+$2+$3+$4)/4 " MHz" }'
+   awk '/MHz/ {print $4}' /proc/cpuinfo | xargs | awk '{print ($1+$2+$3+$4)/4 " MHz" }'
 }
 
 cputemp(){
