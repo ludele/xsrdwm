@@ -16,6 +16,10 @@ bluetooth(){
    elif [ $check_connected = "Xbox" ]
    then 
       printf "🎮\n"
+  
+   elif [ $check_connected = "PG-9028" ]
+   then 
+      printf "👾\n"
 
    elif [ "$check_connected" = "Xbox Soundcore" ]
    then
@@ -112,9 +116,7 @@ time_date(){
    date "+^c#6CC335^ %A %B %e ^c#FF90000^ %k:%M" | xargs
 }
 
-while true
-do
-   xsetroot -name " \
+while xsetroot -name " \
 \
 ^c#63a7d8^ `bluetooth`\
 ^c#B574C0^ `vol` \
@@ -123,5 +125,6 @@ do
 ^c#26BC91^ `ram` \
 `time_date` \
 "
-   sleep 1 
+do sleep 1 
 done
+
