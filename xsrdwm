@@ -77,25 +77,6 @@ rawvol=$(printf "$getvol"\n)
    printf "$emoji $getvol%\n"
 }
 
-network(){
-   update(){
-    sum=0
-    for arg; do
-        read -r i < "$arg"
-        sum=$(( sum + i ))
-    done
-    cache=${XDG_CACHE_HOME:-$HOME/.cache}/${1##*/}
-    [ -f "$cache" ] && read -r old < "$cache" || old=0
-    printf %d\\n "$sum" > "$cache"
-    printf %d\\n $(( sum - old ))
-   }
-
-   rx=$(update /sys/class/net/[ew]*/statistics/rx_bytes)
-   tx=$(update /sys/class/net/[ew]*/statistics/tx_bytes)
-
-   printf "↓%4sB ↑%4sB\\n" $(numfmt --to=iec $rx) $(numfmt --to=iec $tx)
-}
-
 cputemp(){
    sensors | awk '/Core/ {print $3}' | cut -b 2,3,6,7 | xargs
 }
@@ -111,7 +92,7 @@ time_date(){
 while xsetroot -name "\
 ^c#63a7d8^ `bluetooth`\
 ^c#B574C0^ `vol` \
-^c#A787FF^ `network` \
+^c#A787FF^  $(net) \
 ^c#63AAFF^ `cputemp` \
 ^c#26BC91^ `ram` \
 `time_date`"
