@@ -75,7 +75,7 @@ x = `getvol=$(
    then
       emoji="🔈"
    else
-      emoji="🔇"
+      emoji="🔇\n"
    fi
 
    printf "$emoji $getvol%\n"`
