@@ -96,11 +96,6 @@ network(){
    printf "↓%4sB ↑%4sB\\n" $(numfmt --to=iec $rx) $(numfmt --to=iec $tx)
 }
 
-
-cpufreq(){
-   awk '/MHz/ {print $4}' /proc/cpuinfo | xargs | awk '{print ($1+$2+$3+$4)/4 " MHz" }'
-}
-
 cputemp(){
    sensors | awk '/Core/ {print $3}' | cut -b 2,3,6,7 | xargs
 }
@@ -109,22 +104,17 @@ ram(){
    free -h | awk '/Mem/ {print $3}'| sed 's/i/iB/'
 }
 
-# Called the time_date function for "date" 
-# this causes date(){date};date which is almost a fork bomb
-
 time_date(){
    date "+^c#6CC335^ %A %B %e ^c#FF90000^ %k:%M" | xargs
 }
 
-while xsetroot -name " \
-\
+while xsetroot -name "\
 ^c#63a7d8^ `bluetooth`\
 ^c#B574C0^ `vol` \
 ^c#A787FF^ `network` \
 ^c#63AAFF^ `cputemp` \
 ^c#26BC91^ `ram` \
-`time_date` \
-"
+`time_date`"
 do sleep 1 
 done
 
